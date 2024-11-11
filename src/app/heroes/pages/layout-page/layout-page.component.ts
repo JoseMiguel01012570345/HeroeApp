@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { Route, Router } from '@angular/router';
+import { Router } from '@angular/router';
+import { AuthService } from '../../../auth/services/auth.services';
+import { User } from 'src/app/auth/interfaces/user.interfaces';
 
 @Component({
   selector: 'app-layout-page',
@@ -9,14 +11,22 @@ import { Route, Router } from '@angular/router';
 })
 export class LayoutPageComponent {
 
-  constructor(private router: Router){
+  constructor(
+    private router: Router ,
+    private authService:AuthService
+  ){
 
   }
 
   logout():void{
 
+    this.authService.logout()
     this.router.navigateByUrl('auth')
 
+  }
+
+  get user():User | undefined{
+    return this.authService.currentUSer
   }
 
   public sidebarItems = [
