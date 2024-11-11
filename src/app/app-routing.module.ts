@@ -18,7 +18,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'heroes',
+    redirectTo: 'auth',
     pathMatch: 'full'
   },
   {
