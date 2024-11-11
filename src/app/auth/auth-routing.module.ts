@@ -26,7 +26,7 @@ const routes: Routes = [
 
 
 @NgModule({
-  declarations:[ RegisterPageComponent ],
+  declarations:[ RegisterPageComponent  ],
   imports: [ RouterModule.forChild( routes ) ,
     MatFormFieldModule ,
     MatInputModule , 
