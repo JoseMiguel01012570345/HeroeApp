@@ -26,7 +26,7 @@ export class LayoutPageComponent {
   }
 
   get user():User | undefined{
-    return this.authService.currentUSer
+    return this.authService.currentUser
   }
 
   public sidebarItems = [

@@ -22,6 +22,7 @@ export class LoginPageComponent {
     this.authService.login('jhosef','123').subscribe(
       user => {
 
+        this.authService.currentUSer = user.email
       }
     )
     this.router.navigateByUrl('/heroes/list')
