@@ -1,6 +1,11 @@
 import { Component } from '@angular/core';
-import { Route, Router } from '@angular/router';
+import { ActivatedRouteSnapshot, CanActivate, CanMatch, Route, Router, RouterStateSnapshot, UrlSegment, UrlTree } from '@angular/router';
 import { AuthService } from '../../services/auth.services';
+import { Observable, of } from 'rxjs';
+import { FormControl, FormGroup } from '@angular/forms';
+import { User } from '../../interfaces/user.interfaces';
+import { HttpClient } from '@angular/common/http';
+import { environments } from 'src/environments/environments';
 
 @Component({
   selector: 'app-login-page',
@@ -13,21 +18,34 @@ export class LoginPageComponent {
   constructor( 
     private router : Router ,
     private authService: AuthService ,
+    private http : HttpClient ,
   ){
 
   }
 
+  public credentials = new FormGroup({
+    
+    username: new FormControl<string>('') ,
+    password: new FormControl<string>(''),
+    
+  })
+
   login():void{
     
-    this.authService.login('jhosef','123').subscribe(
-      user => {
+    let username = this.credentials.value.username
+    let password = this.credentials.value.password
 
-        this.authService.currentUSer = user.email
-      }
-    )
-    this.router.navigateByUrl('/heroes/list')
+    let query = {
 
+      user: username ,
+      password : password
+
+    }
+    this.authService.login()
+    this.router.navigateByUrl('heroes')
   }
+  
+  
 
 
 }
